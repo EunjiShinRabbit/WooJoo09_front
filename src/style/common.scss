@@ -1,0 +1,32 @@
+.header{
+  height: 80px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  position: fixed;
+  .headerTop{
+    display: flex;
+    .headerLogo{
+      img{
+        width: 100px;
+      }
+    }
+  }
+}
+.banner{
+  padding-top: 80px;
+}
+.main, .category{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  padding-left: 10vw;
+}
+.category{
+  padding-top: 80px;
+}
