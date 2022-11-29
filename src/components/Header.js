@@ -1,9 +1,25 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavLink ,Link } from "react-router-dom";
 import logo from "../resources/logo.png";
+import logoWhite from "../resources/logoWhite.png";
 import search from "../resources/search.png";
-import {categories} from "../util/categories";
+import chat from "../resources/chat.png";
+import chatMoving from "../resources/chatMoving.gif";
+import profile from "../resources/profile.png";
+import { categories } from "../util/util";
 
 const Header = () =>{
+
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+    const updateScroll = () => {
+        setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll', updateScroll);
+    });
+  // const [current, setCurrent] = useState('main');
+  
   const handleKeyPress = e => {
     // if(e.key === 'Enter') {
     //   console.log(e.target.value);
@@ -13,10 +29,13 @@ const Header = () =>{
   }
 
   return(
-    <div className="header">
+    <div className={scrollPosition < 150 ? "header" : "changedHeader"}>
       <div className="headerTop">
         <div className="headerLogo">
-          <Link to="/main"><img src={logo} alt="개발하는 커비"/></Link>
+          <Link to="/main">
+            {scrollPosition < 150 && <img src={logo} alt="우주공구"/>}
+            {scrollPosition >= 150 && <img src={logoWhite} alt="우주공구"/>}
+          </Link>
         </div>
         <div className="headerSearch">
           <input type="text" placeholder=""
@@ -24,17 +43,23 @@ const Header = () =>{
           <img src={search} alt="검색"/>
         </div>
         <div className="headerLogin">
-          <button>로그인</button>
-          {/* 로그인시
-          <Link to="/main"><img src={logo} alt="내정보"/></Link>
-          <Link to="/main"><img src={logo} alt="채팅"/></Link>
-          */}
+          {/* <button>로그인</button> */}
+          <Link to="/main"><img src={profile} alt="내정보"/></Link>
+          <Link to="/main"><img src={chatMoving} alt="채팅"/></Link>
+         
         </div>
       </div>
       <div className="headerBottom">
         <div className="headerCategory">
           {categories.map((category) => (
-            <Link to ={`/category/${category.value}`}>{category.name}</Link>
+            <NavLink to ={`/category/${category.value}`}
+            // className={category.value === current? "selected" : ""}
+            // onClick={()=>{
+            //   setCurrent(category.value)
+            //   console.log(current)
+            // }}
+            activeClassName="active"
+            >{category.name}</NavLink>
           ))}
         </div>
       </div>

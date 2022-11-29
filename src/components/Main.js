@@ -1,20 +1,25 @@
 import { useState, useEffect } from "react";
-import {categories, getCategory} from "../util/categories";
+import {categories, getCategory, citys, towns} from "../util/util";
 import Card from "./Card";
 const Main = ({categoryName})=>{
   const [lineUp, setLineUp] = useState('recommand');
   const [city, setCity] = useState('none');
-  const [town, setTown] = useState('');
+  const [town, setTown] = useState('all');
 
-  const location = [
-    {}
-  ]
-  
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const updateScroll = () => {
+      setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+  }
+  useEffect(()=>{
+      window.addEventListener('scroll', updateScroll);
+  });
+
   return(
-    <div className={categoryName? "category" : "main"}>
-      <p>{categoryName? getCategory(categoryName) : "오늘의 공구"}</p>
+    <div className={categoryName ? (scrollPosition < 150 ? "category" : "category  changed")
+    : (scrollPosition < 150 ? "main" : "main changed")}>
+      <p className="mainTitle">{categoryName? getCategory(categoryName) : "오늘의 공구"}</p>
       <div>
-        <div>
+        <div className="mainSelectBar">
           <select
             value={lineUp}
             onChange={({ target: { value } }) => {
@@ -36,11 +41,11 @@ const Main = ({categoryName})=>{
             }}
           >
             <option value="none">지역 선택</option>
-            <option value="seoul">서울시</option>
-            <option value="hanam">성남시</option>
-            <option value="suwon">수원시</option>
-            <option value="yongin">용인시</option>
-            <option value="hanam">하남시</option>
+            {citys.map((e) => (
+              <option key={e.city} value={e.city}>
+                {e.name}
+              </option>
+            ))}
           </select>
           <select
             value={town}
@@ -49,13 +54,26 @@ const Main = ({categoryName})=>{
               // console.log(value)
             }}
           >
-            <option value="none">지역 선택</option>
+            <option value="all">지역 전체</option>
+            {towns
+            .filter((e) => e.city === city)
+            .map((e) => (
+              <option key={e.town} value={e.town}>
+                {e.name}
+              </option>
+            ))}
           </select>
           <button>등록하기</button>
-          <Card/>
-          <button>더보기</button>
-          <button>맨위로</button>
         </div>
+        <div className="mainCardList">
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+        </div>
+
+        <button>더보기</button>
+        <button>맨위로</button>
       </div>
     </div>
   );
