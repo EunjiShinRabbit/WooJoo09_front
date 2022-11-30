@@ -28,6 +28,11 @@ $yellow3 : #FAEF91;
 body{
   font-size: 1rem;
   box-sizing: border-box;
+
+  /* FONT SMOOTHING */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
