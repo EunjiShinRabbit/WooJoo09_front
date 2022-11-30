@@ -1,39 +1,11 @@
+@import "color.scss";
+
 @font-face {
   font-family: 'S-CoreDream-3Light';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
-
-// 색상표
-$lightGray1 : #E9ECF2;
-$lightGray2 : #F6F7FA;
-$lightGray1Alpha4: rgba(233, 236, 242, .4);
-
-$darkGray1 : #434573;
-$darkGray2 : #585473;
-
-$black1 : #030526;
-$black2 : #01020D;
-
-$lightPurple1 : #A3A5D9;
-$lightPurple2 : #D5D7F2;
-$lightPurple3 : #BDBCFA;
-$lightPurple4 : #A9ABD9;
-
-$purple1 : #8679d9;
-$purple1Alpha4 : rgba(134, 121, 217, .4);
-$purple2 : #A37EF2;
-$purple2Alpha6 : rgba(163, 126, 242, .6);
-
-$bluePurple1 : #828FD9;
-$bluePurple1Alpha6 : rgba(130, 143, 217, .4);
-$bluePurple2 : #3F59A6;
-$bluePurple3 : #626AD9;
-
-$yellow1 : #F7E5B0;
-$yellow2 : #F2DFA7;
-$yellow3 : #FAEF91;
 
 *{
   box-sizing: border-box;
@@ -433,6 +405,8 @@ input:focus{
     color: #FFF;
     border: none;
     padding: 5px 10px 5px 10px;
+    box-shadow: 1px 1px 10px 0 rgb(72 75 108 / 8%);
+    border: solid 1px #e3e9ed;
   }
   button:hover{
     background-color: $purple2;
@@ -523,7 +497,7 @@ input:focus{
         p:nth-child(1){
           font-size: 1.1rem;
         }
-        p:nth-child(2){
+        .cardName{
           font-size: 1.25rem;
         }
         p:nth-child(4){
@@ -560,11 +534,12 @@ input:focus{
     display: grid;
     grid-template-columns: repeat(2, 1fr) !important;
     grid-template-rows: 1fr;
-  }
-  .cardDesc{
-    p{
-      span{
-        font-size: 1.3vw !important;
+
+    .cardDesc{
+      p{
+        span{
+          font-size: 1.3vw !important;
+        }
       }
     }
   }
@@ -580,12 +555,12 @@ input:focus{
     grid-template-rows: 1fr;
   }
   .cardDesc{
-    p:nth-child(2){
+    .cardName{
       font-size: 1.5rem !important;
     }
     p{
       span{
-        font-size: 2vw !important;
+        font-size: 1.7vw !important;
       }
     }
   }
@@ -694,7 +669,7 @@ input:focus{
   .cardDesc{
     p{
       span{
-        font-size: 2vw !important;
+        font-size: 1.7vw !important;
       }
     }
   }
