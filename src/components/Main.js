@@ -72,6 +72,14 @@ const Main = ({categoryName})=>{
           <Card lineUp={lineUp} city={city} town={town}/>
           <Card lineUp={lineUp} city={city} town={town}/>
           <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
         </div>
         <div className="mainbuttons">
         <button>더보기</button>

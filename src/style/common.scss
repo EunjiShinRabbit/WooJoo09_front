@@ -21,16 +21,23 @@ $lightPurple2 : #D5D7F2;
 $lightPurple3 : #BDBCFA;
 $lightPurple4 : #A9ABD9;
 
-$purple1 : rgb(134, 121, 217);
+$purple1 : #8679d9;
+$purple1Alpha4 : rgba(134, 121, 217, .4);
 $purple2 : #A37EF2;
+$purple2Alpha6 : rgba(163, 126, 242, .6);
 
 $bluePurple1 : #828FD9;
+$bluePurple1Alpha6 : rgba(130, 143, 217, .4);
 $bluePurple2 : #3F59A6;
 $bluePurple3 : #626AD9;
 
 $yellow1 : #F7E5B0;
 $yellow2 : #F2DFA7;
 $yellow3 : #FAEF91;
+
+*{
+  box-sizing: border-box;
+}
 
 body{
   font-family: 'S-CoreDream-3Light';
@@ -403,7 +410,13 @@ input:focus{
 .mainTitle{
   font-size: 2rem;
   font-weight: 900;
-  margin: 50px 0px 10px 0px;
+  margin: 40px 0px 20px 0px;
+  padding: 10px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  // background-color: rgba(255, 255, 255, .3);
+  // background-color: rgba(255, 237, 183, 0.5);
 }
 
 .maindiv{
@@ -413,11 +426,48 @@ input:focus{
   flex-direction: column;
   justify-content: center;
 
+  button{
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: $purple2Alpha6;
+    color: #FFF;
+    border: none;
+    padding: 5px 10px 5px 10px;
+  }
+  button:hover{
+    background-color: $purple2;
+  }
+
+  .mainbuttons{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    button{
+      font-size: 1.1rem;
+      padding: 10px 40px 10px 40px;
+    }
+    button:nth-child(1){
+      margin-right: 60px;
+    }
+  }
+
   .mainSelectBar{
     display: flex;
     justify-content: space-between;
     div{
       display: flex;
+    }
+    margin-bottom: 10px;
+    select{
+      background-color: #FFF;
+      border-radius: 10px;
+      border: 1px solid $purple1Alpha4;
+    }
+    select:focus{
+      outline: none;
+    }
+    select:nth-child(1){
+      margin-right: 5px;
     }
   }
 
@@ -442,6 +492,7 @@ input:focus{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: 1fr;
+        color: #01020D;
       }
       .cardImg{
         width: 100%;
@@ -456,8 +507,35 @@ input:focus{
       .cardDesc{
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         width: 80%;
         margin: 10%;
+        p{
+          font-weight: bold;
+          margin-bottom: 2px;
+          span{
+            font-size: 1vw;
+            margin-right: 1vw;
+            padding: 3px 10px 3px 10px;
+            border-radius: 20px;
+          }
+        }
+        p:nth-child(1){
+          font-size: 1.1rem;
+        }
+        p:nth-child(2){
+          font-size: 1.25rem;
+        }
+        p:nth-child(4){
+          span{
+            background-color: $purple1Alpha4;
+          }
+        }
+        p:nth-child(5), p:nth-child(6){
+          span{
+            background-color: $bluePurple1Alpha6;
+          }
+        }
       }
     
       .cardStar{
@@ -483,6 +561,13 @@ input:focus{
     grid-template-columns: repeat(2, 1fr) !important;
     grid-template-rows: 1fr;
   }
+  .cardDesc{
+    p{
+      span{
+        font-size: 1.3vw !important;
+      }
+    }
+  }
 
 }
 
@@ -493,6 +578,16 @@ input:focus{
     display: grid;
     grid-template-columns: repeat(1, 1fr) !important;
     grid-template-rows: 1fr;
+  }
+  .cardDesc{
+    p:nth-child(2){
+      font-size: 1.5rem !important;
+    }
+    p{
+      span{
+        font-size: 2vw !important;
+      }
+    }
   }
 
 }
@@ -596,4 +691,11 @@ input:focus{
     grid-template-rows: 1fr;
   }
 
+  .cardDesc{
+    p{
+      span{
+        font-size: 2vw !important;
+      }
+    }
+  }
 }
