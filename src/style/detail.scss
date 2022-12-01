@@ -35,7 +35,7 @@
     font-size: 1.7rem;
   }
   .detailName{
-    font-size: 2rem;
+    font-size: 2.2vw;
   }
   p:nth-child(3){
     font-size: 1.7rem;
@@ -168,7 +168,7 @@
   }
     
   .current {
-    background: #828FD9;;
+    background: #828FD9;
   }
 }
 
@@ -177,11 +177,84 @@
   width: 80vw;
   margin-top: 20px;
   margin-bottom: 20px;
-  padding: 30px 10px 20px 10px;
+  padding: 30px 10px 30px 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 1fr;
-  gap: 10px;
+  gap: 20px;
+  border-radius: 12px;
+  box-shadow: 1px 1px 10px 0 rgb(72 75 108 / 8%);
+  border: solid 1px #e3e9ed;
+
+  div{
+    height: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  div:nth-child(1){
+    width: 100%;
+    padding-right: 20px;
+    border-right: solid 1px #e3e9ed;
+    align-self: center;
+    >img{
+      padding: 10%;
+      width: 100%;
+      background-color: $yellow3Alpha4;
+      margin-bottom: 10px;
+      border-radius: 50%;
+    }
+    p{
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      img{
+        width: 25px;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  div:nth-child(2){
+    p:nth-child(1){
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    p:nth-child(2){
+      border: solid 1px #e3e9ed;
+      border-radius: 2px;
+      padding: 5px 0px 5px 10px;
+      overflow-y: scroll;
+      line-height:130%;
+    }
+  }
+  div:nth-child(3){
+    padding-left: 10px;
+    border-left: solid 1px #e3e9ed;
+    font-size: 1.2rem;
+    font-weight: bold;
+    >p{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      span:nth-child(1){
+        font-size: 2rem;
+      }
+    }
+    >p:nth-child(2){
+      margin-top: 4vw;
+    }
+  }
+}
+
+.detailContent{
+  background-color: #FFF;
+  width: 80vw;
   border-radius: 12px;
   box-shadow: 1px 1px 10px 0 rgb(72 75 108 / 8%);
   border: solid 1px #e3e9ed;
@@ -198,12 +271,61 @@
     width: 96vw;
   }
 
+  .detailName{
+    font-size: 2rem;
+  }
+
+  .detailContent{
+    width: 96vw;
+  }
+
   .cardDesc{
     p:nth-child(1), p:nth-child(3){
       font-size: 1rem;
     }
     .detailName{
       font-size: 1.2rem;
+    }
+  }
+
+  .detailProfile{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "div1 div3"
+    "div2 div2";
+    gap: 0px;
+    border-radius: 12px;
+    box-shadow: 1px 1px 10px 0 rgb(72 75 108 / 8%);
+    border: solid 1px #e3e9ed;
+
+    div{
+      height: 30vw;
+    }
+  
+    div:nth-child(1){
+      border-right: solid 1px #e3e9ed;
+      grid-area: div1;
+      >img{
+        width: 70%;
+        background-color: $yellow3Alpha4;
+        margin-bottom: 10px;
+        border-radius: 50%;
+      }
+    }
+  
+    div:nth-child(2){
+      margin-top: 20px;
+      grid-area: div2;
+      padding: 0px 1vw;
+    }
+
+    div:nth-child(3){
+      align-self: flex-end;
+      grid-area: div3;
+      border-left: none;
+      font-size: 1.1rem;
     }
   }
 }

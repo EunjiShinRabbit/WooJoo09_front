@@ -1,6 +1,8 @@
 import Map from "../components/Map"
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import profile from "../resources/profile_sample.png"
+import grade1 from "../resources/grade_icon1_wreck.png"
 
 const Detail = () =>{
 
@@ -65,7 +67,7 @@ const Detail = () =>{
         </div> */}
         <div className="cardDesc">
           <p>카테고리</p>
-          <p className="detailName">상품이름최대n글자</p>
+          <p className="detailName">상품이름은최대30자까지가능합니다최대30글자는이만큼입니다</p>
           <p>0000원</p>
           <p><span>수원시</span><span>영통구</span></p>
           <p><span>1 / N</span><span>D - 5</span></p>
@@ -74,9 +76,24 @@ const Detail = () =>{
       </div>
       <button>참여하기</button>
       <div className="detailProfile">
-        <div></div>
-        <div></div>
-        <div></div>
+        <div>
+          <img src={profile} alt="기본프로필"/>
+          <p><img src={grade1} alt="등급아이콘"/>닉네임은최대10글자</p>
+        </div>
+        <div>
+          <p>상점 소개</p>
+          <p>상점소개는최대500자까지가능합니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글자는이만큼입니다최대500글</p>
+        </div>
+        <div>
+          <p>
+            <p>공구 주최 횟수</p>
+            <p><span>n</span><span> 번 이상</span></p>
+          </p>
+          <p>
+            <p>공구 참여 횟수</p>
+            <p><span>n</span><span> 번 이상</span></p>
+          </p>
+        </div>
       </div> 
       <div className="detailContent">
         <div className="detailDesc">
