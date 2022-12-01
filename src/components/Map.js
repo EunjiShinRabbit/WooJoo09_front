@@ -43,7 +43,7 @@ const Map = ({searchPlace})=>{
       // 마커에 클릭이벤트를 등록합니다
       kakao.maps.event.addListener(marker, 'click', function () {
         // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>')
+        infowindow.setContent('<div style="padding:5px;font-size:.8rem;">' + place.place_name + '</div>')
         infowindow.open(map, marker)
       })
     }
@@ -52,10 +52,11 @@ const Map = ({searchPlace})=>{
   return (
       <div className='map'
         id="myMap"
-        style={{
-          width: '500px',
-          height: '500px',
-        }}>
+        // style={{
+        //   width: '500px',
+        //   height: '500px',
+        // }}
+        >
      </div>
   )
 }

@@ -3,10 +3,12 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import profile from "../resources/profile_sample.png"
 import grade1 from "../resources/grade_icon1_wreck.png"
+import star from "../resources/star.png";
 
 const Detail = () =>{
 
-  const [searchPlace, setSearchPlace] = useState("경희대학교 정문")
+  const [displayMap, setDisplayMap] = useState(false);
+  const [searchPlace, setSearchPlace] = useState("경희대학교 정문");
 
   const images = useRef([
     {src:'https://www.nintendo.co.kr/character/kirby/assets/img/home/kirby-forgotten-land-hero.jpg',
@@ -30,6 +32,14 @@ const Detail = () =>{
   
       setCurrent(nextIndex);
     };
+
+    const handleDisplayMap = ()=>{
+      setDisplayMap(!displayMap);
+    }
+
+    useEffect(()=>{
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }, [])
   
     useEffect(() => {
         setStyle({ marginLeft: `-${current}00%` });
@@ -72,9 +82,11 @@ const Detail = () =>{
           <p><span>수원시</span><span>영통구</span></p>
           <p><span>1 / N</span><span>D - 5</span></p>
           <p><span>직거래</span><span>택배</span></p>
+          <img className="cardStar" src={star} alt="스크랩"/>
         </div>
       </div>
       <button>참여하기</button>
+      <p className="detailErrMsg">공동구매에 참여하려면 <Link to="/main">로그인</Link>하세요!</p>
       <div className="detailProfile">
         <div>
           <img src={profile} alt="기본프로필"/>
@@ -97,16 +109,22 @@ const Detail = () =>{
       </div> 
       <div className="detailContent">
         <div className="detailDesc">
-
+          <p>상세 설명</p>
+          <p>
+          상품상세설명은최대1000자까지가능합니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 1000자는 이만큼입니다. 10
+          </p>
         </div>
         <div className="detailMethod">
+          <p>거래 방법</p>
           <div className="direct">
-            <p>직거래 장소 : {searchPlace}</p>
-            <Map searchPlace={searchPlace}/>
+            <p>직거래{<span className="methodOk">가능</span>}</p>
+            <p>직거래 장소 : <span>{searchPlace}</span></p>
+            <span onClick={handleDisplayMap}>{displayMap? "지도 닫기": "지도 보기"}</span>
+            {displayMap&& <Map searchPlace={searchPlace}/>}
           </div>
           <div className="delivery">
-
-            
+            <p>택배거래{<span className="methodNok">불가능</span>} </p>
+            <p>자세한 사항은 상점소개 또는 주최자에게 문의하세요</p>
           </div>
         </div>
       </div>

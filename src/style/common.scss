@@ -527,6 +527,13 @@ input:focus{
 
 }
 
+.map{
+  border-radius: 2px;
+  border: solid 1px #e3e9ed;
+  width: 60vw;
+  height: 40vw;
+}
+
 @media screen and (min-width: 1024px) and (max-width: 1500px) {
 
   .mainCardList{
@@ -568,6 +575,10 @@ input:focus{
 }
 
 @media screen and (max-width:767px) {
+  .map{
+    width: 80vw;
+    height: 60vw;
+  }
 
   .maindiv .mainbuttons{
     button{

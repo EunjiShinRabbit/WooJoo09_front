@@ -14,7 +14,8 @@ import TermAgreePage from "./pages/TermAgreePage";
 import WritePage from "./pages/WritePage";
 import TermPage from "./pages/TermPage";
 import "./style/common.scss";
-import "./style/detail.scss"
+import "./style/detail.scss";
+import "./style/write.scss";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 function App() {
