@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+
 const { kakao } = window
 
-const Map = ({searchPlace})=>{
-
+const MapContainer = ({ searchPlace }) => {
   useEffect(() => {
     var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 })
     const container = document.getElementById('myMap')
@@ -20,15 +20,10 @@ const Map = ({searchPlace})=>{
       if (status === kakao.maps.services.Status.OK) {
         let bounds = new kakao.maps.LatLngBounds()
 
-        // 최상위 검색결과만 마커 찍기
-        displayMarker(data[0])
-        bounds.extend(new kakao.maps.LatLng(data[0].y, data[0].x))
-        
-        // 전체 마커 다 찍기
-        // for (let i = 0; i < data.length; i++) {
-        //   displayMarker(data[i])
-        //   bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x))
-        // }
+        for (let i = 0; i < data.length; i++) {
+          displayMarker(data[i])
+          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x))
+        }
 
         map.setBounds(bounds)
       }
@@ -50,7 +45,7 @@ const Map = ({searchPlace})=>{
   }, [searchPlace])
 
   return (
-      <div className='map'
+     <div
         id="myMap"
         style={{
           width: '500px',
@@ -60,4 +55,4 @@ const Map = ({searchPlace})=>{
   )
 }
 
-export default Map
+export default MapContainer

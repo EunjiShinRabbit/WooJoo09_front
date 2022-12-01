@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 const Detail = () =>{
 
+  const [searchPlace, setSearchPlace] = useState("경희대학교 정문")
+
   const images = useRef([
     {src:'https://www.nintendo.co.kr/character/kirby/assets/img/home/kirby-forgotten-land-hero.jpg',
     url: '/category/fashion'}, 
@@ -11,7 +13,6 @@ const Detail = () =>{
     url: '/category/beauty'}, 
     {src: 'https://www.nintendo.co.kr/front_images/news/924/aa92775cee80f39d0f6b5e30714ae1c9.jpg',
     url: '/category/life'}]);
-  
   
     const [current, setCurrent] = useState(0);
     const [style, setStyle] = useState({
@@ -73,7 +74,9 @@ const Detail = () =>{
       </div>
       <button>참여하기</button>
       <div className="detailProfile">
-
+        <div></div>
+        <div></div>
+        <div></div>
       </div> 
       <div className="detailContent">
         <div className="detailDesc">
@@ -81,10 +84,12 @@ const Detail = () =>{
         </div>
         <div className="detailMethod">
           <div className="direct">
-            {/* <Map/> */}
+            <p>직거래 장소 : {searchPlace}</p>
+            <Map searchPlace={searchPlace}/>
           </div>
           <div className="delivery">
 
+            
           </div>
         </div>
       </div>

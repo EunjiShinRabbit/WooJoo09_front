@@ -568,6 +568,17 @@ input:focus{
 }
 
 @media screen and (max-width:767px) {
+
+  .maindiv .mainbuttons{
+    button{
+      // font-size: 1.1rem;
+      padding: 10px 30px 10px 30px;
+    }
+    button:nth-child(1){
+      margin-right: 40px;
+    }
+  }
+
   .header{
     height: 150px;
     .headerTop{
@@ -673,4 +684,5 @@ input:focus{
       }
     }
   }
+
 }

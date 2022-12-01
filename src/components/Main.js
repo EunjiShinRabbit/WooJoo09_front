@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import {categories, getCategory, citys, towns} from "../util/util";
 import Card from "./Card";
+import { Link } from "react-router-dom";
+
 const Main = ({categoryName})=>{
   const [lineUp, setLineUp] = useState('recommand');
   const [city, setCity] = useState('none');
@@ -10,9 +12,14 @@ const Main = ({categoryName})=>{
   const updateScroll = () => {
       setScrollPosition(window.scrollY || document.documentElement.scrollTop);
   }
+
   useEffect(()=>{
       window.addEventListener('scroll', updateScroll);
   });
+
+  const goToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return(
     <div className={categoryName ? (scrollPosition < 150 ? "category" : "category  changed")
@@ -65,7 +72,7 @@ const Main = ({categoryName})=>{
             ))}
           </select>
           </div>
-          <button>등록하기</button>
+          <Link to="/write"><button>등록하기</button></Link>
         </div>
         <div className="mainCardList">
           <Card lineUp={lineUp} city={city} town={town}/>
@@ -83,7 +90,7 @@ const Main = ({categoryName})=>{
         </div>
         <div className="mainbuttons">
         <button>더보기</button>
-        <button>맨위로</button>
+        <button onClick={goToTop}>맨위로</button>
         </div>
       </div>
     </div>
