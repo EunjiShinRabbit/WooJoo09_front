@@ -68,6 +68,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 30px;
 
   button{
     width: 50%;
@@ -352,8 +353,56 @@
   margin-top: 10px;
 }
 
+.detailState{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  >p:nth-child(1){
+    display: flex;
+    margin-bottom: 5px;
+    font-weight: bold;
+    >span{
+      cursor: pointer;
+    }
+  }
+  span:nth-child(1){
+    margin-right: auto;
+  }
+  span:nth-child(2){
+    margin-left: auto;
+    margin-right: 10px;
+  }
+  div{
+    display: flex;
+    .complainMsg{
+      margin-right: auto;
+    }
+    .deleteMsg{
+      span{
+        margin-left: auto;
+        margin-right: 0px;
+        >span{
+          color: red;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+      display: flex;
+      flex-direction: column;
+      margin-left: auto;
+    }
+  }
+}
+
 
 @media screen and (max-width:767px) {
+  
+  .detailState{
+    width: 96vw;
+  }
+  
   .detailCard{
     width: 96vw;
     margin-top: 30px;

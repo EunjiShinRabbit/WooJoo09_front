@@ -9,6 +9,8 @@ const Detail = () =>{
 
   const [displayMap, setDisplayMap] = useState(false);
   const [searchPlace, setSearchPlace] = useState("경희대학교 정문");
+  const [displayComplainMsg, setDisplayComplainMsg] = useState(false);
+  const [displayDeleteMsg, setDisplayDeleteMsg] = useState(false);
 
   const images = useRef([
     {src:'https://www.nintendo.co.kr/character/kirby/assets/img/home/kirby-forgotten-land-hero.jpg',
@@ -44,6 +46,16 @@ const Detail = () =>{
     useEffect(() => {
         setStyle({ marginLeft: `-${current}00%` });
     }, [current]);
+
+    const writeComplain = () =>{
+      setDisplayDeleteMsg(false);
+      setDisplayComplainMsg(true);
+    }
+
+    const writeDelete = () =>{
+      setDisplayComplainMsg(false);
+      setDisplayDeleteMsg(true);
+    }
 
   return(
     <div className="detail">
@@ -126,9 +138,21 @@ const Detail = () =>{
             <p>택배거래{<span className="methodNok">불가능</span>} </p>
             <p>자세한 사항은 상점소개 또는 주최자에게 문의하세요</p>
           </div>
+        </div>  
+      </div>
+      <div className="detailState">
+        <p>
+          <span onClick={writeComplain}>신고하기</span>
+          <span>수정</span>
+          <span onClick={writeDelete}>삭제</span>
+        </p>
+        <div>
+          {displayComplainMsg && !displayDeleteMsg && <p className="complainMsg">신고 처리 되었습니다</p>}
+          {displayDeleteMsg && !displayComplainMsg && <p className="deleteMsg">
+            <span>공동구매를 정말로 삭제하시겠습니까? <span>삭제하기</span></span>
+            <span>삭제하시면 채팅내역과 거래내용이 모두 사라집니다</span></p>}
         </div>
       </div>
-      <span>신고하기</span>
     </div>
   );
 }

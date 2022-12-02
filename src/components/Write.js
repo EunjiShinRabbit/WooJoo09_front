@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import Map from './Map'
 import {categories, citys, towns} from "../util/util"
 import { storage } from "../api/firebase"
+import representIcon from "../resources/representImg_icon.png"
+import imgIcon from "../resources/images_icon.png"
 
 const Write = () =>{
 
@@ -12,9 +14,13 @@ const Write = () =>{
   const [price, setPrice] = useState('');
   const [city, setCity] = useState('none');
   const [town, setTown] = useState('all');
-  const [countPartner, setCountPartner] = useState('');
+  const [countPartner, setCountPartner] = useState(1);
   const [productDetail, setProductDetail] = useState('');
   const [dueDate, setDueDate] = useState('');
+  const [thisDate, setThisDate] =  useState(new Intl.DateTimeFormat('kr').format(new Date()));
+  const [dueYear, setDueYear] = useState(Number(thisDate.split('.')[0]));
+  const [dueMonth, setDueMonth] = useState(Number(thisDate.split('.')[1]));
+  const [dueDay, setDueDay] = useState(Number(thisDate.split('.')[2])+6);
   const [tradeMethod, setTradeMethod] = useState('');
   const [images, setImages] = useState([]);
   const [urls, setUrls] = useState([]);
@@ -33,6 +39,8 @@ const Write = () =>{
 
   
   const [displayMap, setDisplayMap] = useState(false);
+
+  const [allComplete, setAllComplete] = useState(false);
 
   const onChangeName = (e) => {
     setName(e.target.value);
@@ -53,6 +61,26 @@ const Write = () =>{
     setInputTradePlace(e.target.value);
   }
 
+  const onChangeTradeMethod = (e) => {
+    setTradeMethod(e.target.value);
+  }
+
+  const onChangeProductDetail = (e) =>{
+    setProductDetail(e.target.value);
+  }
+
+  const onChangeDueYear = (e) => {
+    setDueYear(e.target.value);
+  }
+
+  const onChangeDueMonth = (e) => {
+    setDueMonth(e.target.value);
+  }
+
+  const onChangeDueDay = (e) => {
+    setDueDay(e.target.value);
+  }
+
   const handleAddress = () => {
     setTradePlace(inputTradePlace);
     setDisplayMap(!displayMap);
@@ -60,7 +88,6 @@ const Write = () =>{
   const handleDisplayMap = () => {
     setDisplayMap(!displayMap);
   }
-
 
   const writeSubmit = ()=>{
     console.log("카테고리 : "+category);
@@ -70,7 +97,15 @@ const Write = () =>{
 
   const handleImage = (e) => {
     setUrls([]);
-    let imgNum = 1;
+    let imgNum = 0;
+
+    if (e.target.files.length === 0) {
+      console.log("파일이 선택되지 않았습니다");
+      setError("파일이 선택되지 않았습니다");
+      setImages([]);
+      setUrls([]);
+      return;
+    }
 
     for(const image of e.target.files){
       setImages((prevState) => [...prevState, image]);
@@ -82,7 +117,10 @@ const Write = () =>{
         break;
       }
     }
-    if(imgNum > 5) setError("이미지 갯수 초과")
+    if(imgNum > 5) {
+      setError("이미지 갯수 초과");
+      setImages([]);
+    } 
     else setError("");
   };
 
@@ -90,19 +128,18 @@ const Write = () =>{
     event.preventDefault();
     setError("");
 
-    // if (images === "") {
-    //   console.log("파일이 선택되지 않았습니다");
-    //   setError("파일이 선택되지 않았습니다");
-    //   return;
-    // }
+    if (images.length < 1) {
+      console.log("파일이 선택되지 않았습니다");
+      setError("파일이 선택되지 않았습니다");
+      return;
+    }
 
-    // if ( images.length > 5){
-    //   console.log(images.length);
-    //   console.log("이미지는 대표이미지 포함 최대 6장까지 선택 가능합니다");
-    //   setError("이미지는 대표이미지 포함 최대 6장까지 선택 가능합니다");
-    //   setImages([]);
-    //   setError("이미지는 대표이미지 포함 최대 6장까지만 업로드 가능합니다");
-    // }
+    if ( images.length > 5){
+      console.log("이미지는 대표이미지 포함 최대 6장까지 선택 가능합니다");
+      setError("이미지는 대표이미지 포함 최대 6장까지 선택 가능합니다");
+      setImages([]);
+      return;
+    }
 
     let imgNum = 1;
 
@@ -143,7 +180,15 @@ const Write = () =>{
   };
 
   const handleImageRepresent = (event) => {
+    setRepresentUrl("");
     const image = event.target.files[0];
+    if (!image) {
+      console.log("파일이 선택되지 않았습니다");
+      setRepresentErr("파일이 선택되지 않았습니다");
+      setRepresentImg("");
+      setRepresentUrl("");
+      return;
+    }
     setRepresentImg(image);
     console.log(image);
     setRepresentErr("");
@@ -190,10 +235,49 @@ const Write = () =>{
 
   return(
     <div className="write">
-      <p>공동 구매 등록</p>
-      <div>
+      <p className="writeTitle">공동 구매 등록</p>
+      <div className="writeInput">
+      <div className='representInput'>
+          <form className="writeRepresentInput" onSubmit={onSubmitRepresent}>
+            <label><span>대표 이미지</span>
+            <img src={representIcon} alt="대표이미지등록"/>
+            <input type="file" accept="image/*" onChange={handleImageRepresent} />
+            </label>
+            {representImg && <button onClick={onSubmitRepresent}>선택 이미지 등록</button>}
+          </form>
+          {representErr && <p>{representErr}</p>}
+          {representUrl && (
+            <div className="imgPreview">
+              <p>이미지 미리보기</p>
+              <div>
+              <img className="representImgPreview" src={representUrl} alt="uploaded" />
+              </div>
+            </div>
+          )}
+      </div>
+      <div className="imgInput">
+        <form className="writeImgInput" onSubmit={onSubmit}>
+          <label><span>상품 이미지</span>
+          <img src={imgIcon} alt="상세이미지등록"/>
+          <input multiple type="file" accept="image/*" onChange={handleImage} />
+          </label>
+          {images.length > 0 && 
+          images.map((image)=>(<p>{image.name}</p>))}
+          {images.length > 0 && 
+          <button onClick={onSubmit}>선택 이미지 등록</button>}
+        </form>
+        {error && <p>{error}</p>}
+        {(urls.length >= 1) && (
+          <div className="imgPreview">
+            <p>이미지 미리보기</p>
+            <div>
+            {urls.map((imageUrl)=>(<img className="writeImgPreview" src={imageUrl} alt="uploaded" />))}
+            </div>
+          </div>
+        )}
+      </div>
       <div className="categoryInput">
-        <label>카테고리 선택
+        <label><span>카테고리 선택</span>
         <select
           value={category}
           onChange={({ target: { value } }) => {
@@ -216,8 +300,44 @@ const Write = () =>{
       </div>
       <div className="priceInput">
         <label><span>가격</span>
-        <input onChange={onChangePrice}/>
+        <input type="number" onChange={onChangePrice}/>
         <span>원</span></label>
+      </div>
+      <div className="countPartnerInput">
+      <label className="pageselect">
+        <span>모집할 인원 수</span>
+            <select
+              value={countPartner}
+              onChange={({ target: { value } }) => {
+                setCountPartner(value);
+              }}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </label>
+      </div>
+      <div className="dueDateInput">
+        <label><span>모집 마감일</span>
+          <div>
+          <input type="number" value={dueYear} onChange={onChangeDueYear}></input>
+          <span>/</span>
+          <input type="number" value={dueMonth} onChange={onChangeDueMonth}></input>
+          <span>/</span>
+          <input type="number" value={dueDay} onChange={onChangeDueDay}></input>
+          </div>
+        </label>
+      </div>
+      <div className="tradeMethodInput">
+        <label><span>거래 방법</span>
+        <label><input type="radio" name="method" onChange={onChangeTradeMethod} value="direct" />직거래</label>
+        <label><input type="radio" name="method" onChange={onChangeTradeMethod} value="delivery"/>택배거래</label>
+        <label><input type="radio" name="method" onChange={onChangeTradeMethod} value="both"/>모두 가능</label>
+        </label>
       </div>
       <div className="loactionInput">
         <label><span>동네</span>
@@ -261,34 +381,15 @@ const Write = () =>{
         </label>
       </div>
       {displayMap && <Map searchPlace={tradePlace} />}
+      <div className="productDetailInput">
+      <label><span>상세 설명</span>
+      <textarea name="writecontent" className="productDetailTextarea" 
+        placeholder="상품의 설명을 자세하게 기재해주세요" onChange={onChangeProductDetail} cols="50" wrap="hard"></textarea>
+      </label>
       </div>
-      <div className='representInput'>
-        {representErr && <p>{representErr}</p>}
-          <form className="writeRepresentInput" onSubmit={onSubmitRepresent}>
-            <input type="file" accept="image/*" onChange={handleImageRepresent} />
-            <button onClick={onSubmitRepresent}>업로드</button>
-          </form>
-          {representUrl && (
-            <div>
-              <p> 이미지 미리보기</p>
-              <img className="representImgPreview" src={representUrl} alt="uploaded" />
-            </div>
-          )}
       </div>
-      <div className="imgInput">
-        {error && <p>{error}</p>}
-        <form className="writeImgInput" onSubmit={onSubmit}>
-          <input multiple type="file" accept="image/*" onChange={handleImage} />
-          <button onClick={onSubmit}>업로드</button>
-        </form>
-        {(urls.length >= 1) && (
-          <div>
-            <p> 이미지 미리보기</p>
-            {urls.map((imageUrl)=>(<img className="writeImgPreview" src={imageUrl} alt="uploaded" />))}
-          </div>
-        )}
-      </div>
-      <button onClick={writeSubmit}>등록</button>
+      {allComplete? <button className="writeSubmitBtn" onClick={writeSubmit}>등록</button> :
+      <button className="writeSubmitBtn nobutton">등록</button>}
     </div>
   );
 }
