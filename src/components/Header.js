@@ -50,8 +50,8 @@ const Header = () =>{
         </div>
         <div className="headerLogin">
           {/* <button>로그인</button> */}
-          <Link to="/main"><img src={scrollPosition < 150 ? profileBlack : profileWhite} alt="내정보"/></Link>
-          <Link to="/main"><img src={scrollPosition < 150 ? chatMovingBlack : chatMovingWhite} alt="채팅"/></Link>
+          <Link to="/member"><img src={scrollPosition < 150 ? profileBlack : profileWhite} alt="내정보"/></Link>
+          <Link to="/chatlist"><img src={scrollPosition < 150 ? chatMovingBlack : chatMovingWhite} alt="채팅"/></Link>
          
         </div>
       </div>
