@@ -9,7 +9,7 @@ const CategoryPage = () =>{
   return(
     <>
     {/* <Loader/> */}
-    <div className="wrapper">
+    <div className="categoryWrapper">
       <Header/>
       <Main categoryName = {categoryName}/>
       <Footer/>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import {categories, getCategory, citys, towns} from "../util/util";
 import Card from "./Card";
+import { Link } from "react-router-dom";
+
 const Main = ({categoryName})=>{
   const [lineUp, setLineUp] = useState('recommand');
   const [city, setCity] = useState('none');
@@ -10,16 +12,22 @@ const Main = ({categoryName})=>{
   const updateScroll = () => {
       setScrollPosition(window.scrollY || document.documentElement.scrollTop);
   }
+
   useEffect(()=>{
       window.addEventListener('scroll', updateScroll);
   });
+
+  const goToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return(
     <div className={categoryName ? (scrollPosition < 150 ? "category" : "category  changed")
     : (scrollPosition < 150 ? "main" : "main changed")}>
       <p className="mainTitle">{categoryName? getCategory(categoryName) : "오늘의 공구"}</p>
-      <div>
+      <div className="maindiv">
         <div className="mainSelectBar">
+          <div>
           <select
             value={lineUp}
             onChange={({ target: { value } }) => {
@@ -63,17 +71,27 @@ const Main = ({categoryName})=>{
               </option>
             ))}
           </select>
-          <button>등록하기</button>
+          </div>
+          <Link to="/write"><button>등록하기</button></Link>
         </div>
         <div className="mainCardList">
           <Card lineUp={lineUp} city={city} town={town}/>
           <Card lineUp={lineUp} city={city} town={town}/>
           <Card lineUp={lineUp} city={city} town={town}/>
           <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
+          <Card lineUp={lineUp} city={city} town={town}/>
         </div>
-
+        <div className="mainbuttons">
         <button>더보기</button>
-        <button>맨위로</button>
+        <button onClick={goToTop}>맨위로</button>
+        </div>
       </div>
     </div>
   );

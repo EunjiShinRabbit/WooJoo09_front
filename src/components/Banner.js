@@ -1,8 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import img1 from "../resources/banner_background1.jpg";
-import img2 from "../resources/banner_background2.jpg";
-import img3 from "../resources/banner_background3.png";
 
 const Banner = () =>{
 
@@ -51,6 +48,7 @@ const Banner = () =>{
           </div>
         </div>
         <div className="btnRight" onClick={() => { moveSlide(1); }}>&gt;</div>
+        <div className="bannerPage">{current + 1} / {images.current.length}</div>
       </div>
       {/* <div className="position">
         {images.current.map((x, i) => (

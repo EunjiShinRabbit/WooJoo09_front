@@ -1,6 +1,7 @@
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 import Main from "../components/Main";
+import Footer from "../components/Footer"
 
 const MainPage = () =>{
   return(
@@ -8,6 +9,7 @@ const MainPage = () =>{
       <Header/>
       <Banner/>
       <Main/>
+      <Footer/>
     </div>
   )
 }

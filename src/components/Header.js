@@ -2,10 +2,16 @@ import { useState, useEffect } from "react";
 import { NavLink ,Link } from "react-router-dom";
 import logo from "../resources/logo.png";
 import logoWhite from "../resources/logoWhite.png";
-import search from "../resources/search.png";
+import search from "../resources/search_purple.png";
 import chat from "../resources/chat.png";
 import chatMoving from "../resources/chatMoving.gif";
 import profile from "../resources/profile.png";
+import chatWhite from "../resources/chat_white2.png";
+import chatMovingWhite from "../resources/chatMoving_white2.gif";
+import profileWhite from "../resources/profile_white2.png";
+import chatBlack from "../resources/chat_black.png";
+import chatMovingBlack from "../resources/chatMoving_black.gif";
+import profileBlack from "../resources/profile_black.png";
 import { categories } from "../util/util";
 
 const Header = () =>{
@@ -44,8 +50,8 @@ const Header = () =>{
         </div>
         <div className="headerLogin">
           {/* <button>로그인</button> */}
-          <Link to="/main"><img src={profile} alt="내정보"/></Link>
-          <Link to="/main"><img src={chatMoving} alt="채팅"/></Link>
+          <Link to="/member"><img src={scrollPosition < 150 ? profileBlack : profileWhite} alt="내정보"/></Link>
+          <Link to="/chatlist"><img src={scrollPosition < 150 ? chatMovingBlack : chatMovingWhite} alt="채팅"/></Link>
          
         </div>
       </div>
