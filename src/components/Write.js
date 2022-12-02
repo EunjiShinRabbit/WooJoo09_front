@@ -334,9 +334,11 @@ const Write = () =>{
       </div>
       <div className="tradeMethodInput">
         <label><span>거래 방법</span>
+        <div>
         <label><input type="radio" name="method" onChange={onChangeTradeMethod} value="direct" />직거래</label>
         <label><input type="radio" name="method" onChange={onChangeTradeMethod} value="delivery"/>택배거래</label>
         <label><input type="radio" name="method" onChange={onChangeTradeMethod} value="both"/>모두 가능</label>
+        </div>
         </label>
       </div>
       <div className="loactionInput">
@@ -375,9 +377,11 @@ const Write = () =>{
       </div>
       <div className="placeInput">
         <label htmlFor="tradePlace"><span>직거래 장소</span>
-        <input id="tradePlace" placeholder="직거래 장소를 입력하세요" onChange={onChangeTradePlace} value={inputTradePlace} />
-        {displayMap? <button onClick={handleDisplayMap}>지도 닫기</button> : 
-        <button onClick={handleAddress}>지도 보기</button>}
+        <div>
+          <input id="tradePlace" placeholder="직거래 장소를 입력하세요" onChange={onChangeTradePlace} value={inputTradePlace} />
+          {displayMap? <button onClick={handleDisplayMap}>지도 닫기</button> : 
+          <button onClick={handleAddress}>지도 보기</button>}
+        </div>
         </label>
       </div>
       {displayMap && <Map searchPlace={tradePlace} />}

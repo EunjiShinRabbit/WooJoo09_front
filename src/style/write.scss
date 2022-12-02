@@ -37,7 +37,12 @@ input[type="file"] {
 	    -webkit-appearance: none;
 	    margin: 0;
     }
+    span:nth-child(3){
+      font-size: 1rem;
+      font-weight: 500;
+    }
   }
+
 }
 
 .writeInput{
@@ -54,6 +59,10 @@ input[type="file"] {
   margin-bottom: 20px;
   // background-color: blue;
 
+  >div{
+    margin-bottom: 20px;
+  }
+
   label{
     display: flex;
     flex-direction: row;
@@ -69,6 +78,13 @@ input[type="file"] {
       width: 20vw;
       min-width: 120px;
     }
+  }
+
+  textarea{
+    padding: 5px;
+    width: 70%;
+    height: 20vh;
+    line-height: 150%;
   }
 }
 
@@ -133,9 +149,47 @@ input[type="file"] {
   justify-content: center;
 }
 
+.tradeMethodInput{
+  div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    label:nth-child(1){
+      min-width: 75px;
+    }
+    label:nth-child(2), label:nth-child(3){
+      min-width: 90px;
+    }
+  }
+}
+
+.placeInput{
+  div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.dueDateInput{
+  div{
+    span{
+      color: $purple1;
+    }
+  }
+}
+
+
 @media screen and (max-width:767px) {
   .write{
     padding-top: 150px;
+
+    .priceInput{
+      span:nth-child(3){
+        font-size: 1rem !important;
+        font-weight: 500;
+      }
+    }
   }
 
   .writeInput{
