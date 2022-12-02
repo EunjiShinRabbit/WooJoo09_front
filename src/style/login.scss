@@ -11,20 +11,6 @@
     box-sizing: border-box;
 }
 
-body {  
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-    font-family: 'S-CoreDream-3Light';
-    background-color: #e9ecf2;
-}
-body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-}
-
-input::placeholder{
-    font-family: 'S-CoreDream-3Light';
-  }
-
 .loginWrapper {
     display: flex;
     align-items: center;

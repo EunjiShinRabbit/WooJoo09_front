@@ -227,7 +227,7 @@ const RegisterPage = () =>{
 
 
   return(
-    <div className="wrapper">
+    <div className="registerwrapper">
       <Header/>
       <div className="registerWrapper">     
         <div className="register">
